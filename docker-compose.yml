@@ -1,0 +1,24 @@
+version: '3'
+services:
+  envoy:
+    container_name: envoy
+    image: envoyproxy/envoy:dev-ec7229e00e177df950bc4bb889a6e3f146d3d025
+    ports:
+      - "10000:10000"
+      - "9901:9901"
+      - "9902:9902"
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+      - ./logs:/logs
+
+  jekyll:
+    container_name: jekyll
+    image: jekylocal
+    command: jekyll serve --watch --drafts --host -H 0.0.0.0
+    ports:
+      - "4000:4000"
+    volumes:
+      - /Users/dewet/code/dewetblomerus.github.io:/home/jekyll
+
+
+# docker run -v "$(pwd)":/home/jekyll -p 4000:4000 -it jekylocal jekyll serve -H 0.0.0.0
