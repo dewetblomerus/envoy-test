@@ -3,14 +3,10 @@ services:
   envoy:
     container_name: envoy
     build: .
-    # image: envoyproxy/envoy:dev-ec7229e00e177df950bc4bb889a6e3f146d3d025
     ports:
       - "10000:10000"
       - "9902:9902"
     volumes:
-      # - ./envoy-dynamic.yaml:/etc/envoy/envoy.yaml
-      # - ./envoy-dynamic-cds.yaml:/etc/envoy/envoy-dynamic-cds.yaml
-      # - ./envoy-dynamic-lds.yaml:/etc/envoy/envoy-dynamic-lds.yaml
       - ./logs:/logs
 
   jekyll:
@@ -21,6 +17,3 @@ services:
       - "4000:4000"
     volumes:
       - /Users/dewet/code/dewetblomerus.github.io:/home/jekyll
-
-
-# docker run -v "$(pwd)":/home/jekyll -p 4000:4000 -it jekylocal jekyll serve -H 0.0.0.0
