@@ -19,11 +19,11 @@ resources:
                 virtual_hosts:
                   - domains:
                       - '*'
-                    name: backend_cluster
+                    name: melody_cluster
                     routes:
                       - match:
                           prefix: /
                         route:
-                          cluster: backend_cluster
+                          cluster: melody_cluster
               stat_prefix: ingress_http
     name: dynamic_lds

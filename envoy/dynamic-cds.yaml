@@ -1,11 +1,11 @@
 resources:
 - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
-  name: backend_cluster
+  name: melody_cluster
   connect_timeout: 1s
   type: strict_dns
   lb_policy: round_robin
   load_assignment:
-    cluster_name: backend_cluster
+    cluster_name: melody_cluster
     endpoints:
     - lb_endpoints:
         - endpoint:

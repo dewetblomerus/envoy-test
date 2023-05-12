@@ -19,25 +19,25 @@ static_resources:
               route_config:
                 name: all
                 virtual_hosts:
-                  - name: backend_cluster
+                  - name: melody_cluster
                     domains: ["*"]
                     routes:
                       - match:
                           prefix: "/"
                         route:
-                          cluster: backend_cluster
+                          cluster: melody_cluster
               http_filters:
               - name: envoy.filters.http.router
                 typed_config:
                   "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
 
   clusters:
-    - name: backend_cluster
+    - name: melody_cluster
       connect_timeout: 1s
       type: strict_dns
       lb_policy: round_robin
       load_assignment:
-        cluster_name: backend_cluster
+        cluster_name: melody_cluster
         endpoints:
         - lb_endpoints:
             - endpoint:

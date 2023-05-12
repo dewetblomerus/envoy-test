@@ -5,7 +5,7 @@ const fragments = Array(50_000 * 12)
   .map(
     (_, index) =>
       `                  - match: { prefix: "/${index}/" }
-                    route: { cluster: backend_cluster }`
+                    route: { cluster: melody_cluster }`
   )
   .join("\n");
 const yamlTemplate = `resources:
@@ -24,14 +24,14 @@ const yamlTemplate = `resources:
           route_config:
             name: all
             virtual_hosts:
-              - name: backend_cluster
+              - name: melody_cluster
                 domains: ["*"]
                 routes:
 ${fragments}
                   - match:
                       prefix: "/"
                     route:
-                      cluster: backend_cluster
+                      cluster: melody_cluster
           http_filters:
           - name: envoy.filters.http.router
             typed_config:
